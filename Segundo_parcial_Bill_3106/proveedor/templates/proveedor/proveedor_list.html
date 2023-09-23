@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-2">
+    <h1 class="text-center text-dark">Listado de Proveedores</h1>
+    <div style="margin: 20px;">
+        <a href="{% url 'proveedor_create' %}" class="btn btn-success"><i class="fas fa-plus"></i>Agregar</a> 
+    </div>
+    <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+        <table class="table table-striped" style="table-layout: fixed; width: 100%;">
+          <thead >
+            <tr>
+              <th style="width: 34%;">Codigo</th>
+              <th style="width: 33%;">Nombre</th>
+              <th style="width: 34%;">Nif</th>
+              <th style="width: 34%;">Direccion</th>
+              <th style="width: 34%;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for proveedor in proveedores %}
+              <tr>
+                <td>{{ proveedor.id }}</td>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.nif}}</td>
+                <td>{{ proveedor.direccion }}</td>
+            
+                <td>
+                  <a href="{% url 'proveedor_update' proveedor.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                  <a href="{% url 'proveedor_delete' proveedor.pk %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>
+  
+  </div>
+{% endblock %}
